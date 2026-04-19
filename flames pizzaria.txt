@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flames Pizzeria | Fanar, Lebanon</title>
+    <style>
+        /* CSS STYLES */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Playfair+Display:ital,wght@1,700&display=swap');
+
+        :root {
+            --primary: #ff4500;
+            --primary-light: #ff8c00;
+            --dark: #121212;
+            --darker: #0a0a0a;
+            --light: #f5f5f5;
+            --gray: #888;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--darker);
+            color: var(--light);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--light);
+        }
+
+        .highlight {
+            color: var(--primary);
+        }
+
+        /* HEADER & HERO */
+        header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)), 
+                        url('https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1920&q=80') center/cover;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .logo-text {
+            font-size: 4rem;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 10px rgba(255, 69, 0, 0.5);
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: var(--primary-light);
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .location {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--primary), var(--primary-light));
+            color: white;
+            padding: 15px 35px;
+            font-size: 1.2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 69, 0, 0.4);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 69, 0, 0.6);
+        }
+
+        /* SECTION LAYOUT */
+        section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            border-bottom: 2px solid var(--primary);
+            display: inline-block;
+            padding-bottom: 10px;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* MENU GRID */
+        .menu-category {
+            margin-bottom: 60px;
+        }
+
+        .menu-category h3 {
+            font-size: 2rem;
+            color: var(--primary-light);
+            margin-bottom: 20px;
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .size-header {
+            text-align: center;
+            color: var(--gray);
+            margin-bottom: 30px;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .menu-item {
+            background-color: var(--dark);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid var(--primary);
+            transition: transform 0.3s;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px);
+            background-color: #1f1f1f;
+        }
+
+        .menu-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .menu-item-title {
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        .menu-item-price {
+            color: var(--primary-light);
+            font-weight: bold;
+        }
+
+        /* GALLERY (REAL PHOTOS) */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            transition: transform 0.3s;
+        }
+
+        .gallery-img:hover {
+            transform: scale(1.03);
+        }
+
+        /* REVIEWS */
+        .reviews-summary {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .stars {
+            color: #FFD700;
+            font-size: 1.5rem;
+            letter-spacing: 5px;
+        }
+
+        .review-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .review-card {
+            background-color: var(--dark);
+            padding: 30px;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .review-card::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-size: 4rem;
+            color: var(--primary);
+            font-family: serif;
+            opacity: 0.3;
+        }
+
+        .reviewer {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .reviewer-info h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
+        }
+
+        .reviewer-info p {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        .review-text {
+            font-size: 0.95rem;
+            color: #ddd;
+            font-style: italic;
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: #050505;
+            text-align: center;
+            padding: 50px 20px;
+            border-top: 1px solid #333;
+        }
+
+        .footer-call {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .phone {
+            font-size: 3rem;
+            color: var(--primary);
+            font-weight: 800;
+            display: block;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1 class="logo-text">🔥 Flames Pizzeria</h1>
+        <p class="subtitle">Au Feu de Bois | Where Fire Meets Flavor</p>
+        <p class="location">📍 Fanar, Lebanon</p>
+        <a href="#menu" class="btn">View Our Menu</a>
+    </header>
+
+    <section id="gallery">
+        <h2 class="section-title">The <span class="highlight">Wood-Fired</span> Experience</h2>
+        <div class="gallery-grid">
+            <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=800&q=80" alt="Wood fired pizza in oven" class="gallery-img">
+            <img src="https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?auto=format&fit=crop&w=800&q=80" alt="Fresh Neapolitan Pizza" class="gallery-img">
+            <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800&q=80" alt="Delicious sliced pizza" class="gallery-img">
+        </div>
+    </section>
+
+    <section id="menu">
+        <h2 class="section-title">Our <span class="highlight">Menu</span></h2>
+
+        <div class="menu-category">
+            <h3>🔥 Favorite Flames</h3>
+            <p class="size-header">Neapolitan (30 cm) | Family (40 cm)</p>
+            <div class="menu-grid">
+                <div class="menu-item"><div class="menu-item-header"><span class="menu-item-title">Margherita Pizza</span><span class="menu-item-price">10$ | 12$</span></div></div>
+                <div class="menu-item"><div class="menu-item-header"><span class="menu-item-title">Reine Pizza</span><span class="menu-item-price">10$ | 12$</span></div></div>
+                <div class="menu-item"><div class="menu-item-header"><span class="menu-item-title">Lebanese Royal</span><span class="menu-item-price">12$ | 14$</span></div></div>
+                <div class="menu-item"><div class="menu-item-header"><span class="menu-item-title">Creamy Royal</span><span class="menu-item-price">12$ | 14$</span></div></div>
+                <div class="menu-item"><div class="menu-item-header"><span class="menu-item-title">Pepperoni Pizza</span><span class="menu-item-price">12$ | 14$</span></div></div>
+                <div class="menu-item"><div class="menu-item-header"><span class="menu-item-title">Chorizo Pizza</span><span class="menu-item-price">12$ | 14$</span></div></div>
+                <div class="menu-item"><div class="menu-item-header"><span class="menu-item-title">Bolognese Pizza</span><span class="menu-item-price">12$ | 14$</span></div></div>
+                <div class="menu-item"><div class="menu-item-header"><span class="menu-item-title">Old School Pizza</span><span class="menu-item-price">12$ | 14$</span></div></div>
+                <div class="menu-item"><div class="menu-item-header"><span class="menu-item-title">Farmer Pizza</span><span class="menu-item-price">12$ | 14$</span></div></div>
+                <div class="menu-item"><div class="menu-item-header"><span class="menu-item-title">BBQ Chicken</span><span class="menu-item-price">12$ | 14$</span></div></div>
+                <div class="menu-item"><div class="menu-item-header"><span class="menu-item-title">Vegetarian Pizza</span><span class="menu-item-price">12$ | 14$</span></div></div>
+                <div class="menu-item"><div class="menu-item-header"><span class="menu-item-title">Shrimps Pizza</span><span class="menu-item-price">14$ | 16$</span></div></div>
+                <div class="menu-item"><div class="menu-item-header"><span class="menu-item-title">Salmon Pizza</span><span class="menu-item-price">14$ | 16$</span></div></div>
+                <div class="menu-item"><div class="menu-item-header"><span class="menu-item-title">Tuna Pizza</span><span class="menu-item-price">12$ | 14$</span></div></div>
+                <div class="menu-item"><div class="menu-item-header"><span class="menu-item-title">Napolitana Pizza</span><span class="menu-item-price">12$ | 14$</span></div></div>
+                <div class="menu-item"><div class="menu-item-header"><span class="menu-item-title">Del Mare Pizza</span><span class="menu-item-price">14$ | 16$</span></div></div>
+                <div class="menu-item"><div class="menu-item-header"><span class="menu-item-title">Pizza de Parma</span><span class="menu-item-price">16$ | 18$</span></div></div>
+                <div class="menu-item"><div class="menu-item-header"><span class="menu-item-title">Bresaola Pizza</span><span class="menu-item-price">18$ | 20$</span></div></div>
+                <div class="menu-item"><div class="menu-item-header"><span class="menu-item-title">Truffle Pizza</span><span class="menu-item-price">16$ | 18$</span></div></div>
+            </div>
+        </div>
+
+        <div class="menu-category">
+            <h3>✨ Special Flames</h3>
+            <p class="size-header">Neapolitan (30 cm) | Family (40 cm)</p>
+            <div class="menu-grid">
+                <div class="menu-item"><div class="menu-item-header"><span class="menu-item-title">Caprese Pizza</span><span class="menu-item-price">14$ | 16$</span></div></div>
+                <div class="menu-item"><div class="menu-item-header"><span class="menu-item-title">Quattro Formaggi</span><span class="menu-item-price">14$ | 16$</span></div></div>
+                <div class="menu-item"><div class="menu-item-header"><span class="menu-item-title">Combo Pizza</span><span class="menu-item-price">14$ | 16$</span></div></div>
+                <div class="menu-item"><div class="menu-item-header"><span class="menu-item-title">Taco Pizza</span><span class="menu-item-price">14$ | 16$</span></div></div>
+                <div class="menu-item"><div class="menu-item-header"><span class="menu-item-title">Popeye’s Pizza</span><span class="menu-item-price">14$ | 16$</span></div></div>
+                <div class="menu-item"><div class="menu-item-header"><span class="menu-item-title">Chicken Ranch</span><span class="menu-item-price">14$ | 16$</span></div></div>
+                <div class="menu-item"><div class="menu-item-header"><span class="menu-item-title">Honey Fiesta</span><span class="menu-item-price">16$ | 18$</span></div></div>
+                <div class="menu-item"><div class="menu-item-header"><span class="menu-item-title">Hawaiian Lovers</span><span class="menu-item-price">14$ | 16$</span></div></div>
+            </div>
+        </div>
+
+        <div class="menu-grid">
+            <div class="menu-category">
+                <h3>🥗 Salads</h3>
+                <div class="menu-item"><div class="menu-item-header"><span class="menu-item-title">Caesar Salad</span><span class="menu-item-price">8$</span></div></div>
+                <div class="menu-item" style="margin-top:15px;"><div class="menu-item-header"><span class="menu-item-title">Chicken Caesar</span><span class="menu-item-price">9.5$</span></div></div>
+                <div class="menu-item" style="margin-top:15px;"><div class="menu-item-header"><span class="menu-item-title">Kale Salad</span><span class="menu-item-price">8$</span></div></div>
+                <div class="menu-item" style="margin-top:15px;"><div class="menu-item-header"><span class="menu-item-title">Chicken Kale</span><span class="menu-item-price">9.5$</span></div></div>
+                <div class="menu-item" style="margin-top:15px;"><div class="menu-item-header"><span class="menu-item-title">Shrimps Kale</span><span class="menu-item-price">12.5$</span></div></div>
+                <div class="menu-item" style="margin-top:15px;"><div class="menu-item-header"><span class="menu-item-title">Quinoa Salad</span><span class="menu-item-price">8$</span></div></div>
+                <div class="menu-item" style="margin-top:15px;"><div class="menu-item-header"><span class="menu-item-title">Chicken Quinoa</span><span class="menu-item-price">9.5$</span></div></div>
+                <div class="menu-item" style="margin-top:15px;"><div class="menu-item-header"><span class="menu-item-title">Shrimps Quinoa</span><span class="menu-item-price">12.5$</span></div></div>
+                <div class="menu-item" style="margin-top:15px;"><div class="menu-item-header"><span class="menu-item-title">Chef Salad</span><span class="menu-item-price">10$</span></div></div>
+                <div class="menu-item" style="margin-top:15px;"><div class="menu-item-header"><span class="menu-item-title">Chicken Balsamic</span><span class="menu-item-price">10$</span></div></div>
+                <div class="menu-item" style="margin-top:15px;"><div class="menu-item-header"><span class="menu-item-title">Tuna Pasta Salad</span><span class="menu-item-price">10$</span></div></div>
+                <div class="menu-item" style="margin-top:15px;"><div class="menu-item-header"><span class="menu-item-title">Crab Salad</span><span class="menu-item-price">10$</span></div></div>
+                <div class="menu-item" style="margin-top:15px;"><div class="menu-item-header"><span class="menu-item-title">Chicken Pasta Salad</span><span class="menu-item-price">9.5$</span></div></div>
+            </div>
+
+            <div>
+                <div class="menu-category">
+                    <h3>🍟 Appetizers</h3>
+                    <div class="menu-item"><div class="menu-item-header"><span class="menu-item-title">Fries</span><span class="menu-item-price">5$</span></div></div>
+                    <div class="menu-item" style="margin-top:15px;"><div class="menu-item-header"><span class="menu-item-title">Wedges</span><span class="menu-item-price">6$</span></div></div>
+                </div>
+
+                <div class="menu-category">
+                    <h3>🍫 Sweet Flames</h3>
+                    <p class="size-header">Size: 30 cm</p>
+                    <div class="menu-item"><div class="menu-item-header"><span class="menu-item-title">Chocoba Pizza</span><span class="menu-item-price">8$</span></div></div>
+                    <div class="menu-item" style="margin-top:15px;"><div class="menu-item-header"><span class="menu-item-title">Sweetness Pizza</span><span class="menu-item-price">10$</span></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reviews">
+        <h2 class="section-title">What Our <span class="highlight">Customers</span> Say</h2>
+        
+        <div class="reviews-summary">
+            <h1 style="font-size: 4rem; margin-bottom: 0;">5.0</h1>
+            <div class="stars">★★★★★</div>
+            <p style="color: var(--gray);">Based on 12 Google Reviews</p>
+            <p style="margin-top: 10px; font-size: 0.9rem;">
+                <span style="border: 1px solid var(--gray); padding: 5px 10px; border-radius: 20px; margin: 5px; display: inline-block;">Wood oven</span>
+                <span style="border: 1px solid var(--gray); padding: 5px 10px; border-radius: 20px; margin: 5px; display: inline-block;">Authentic taste</span>
+                <span style="border: 1px solid var(--gray); padding: 5px 10px; border-radius: 20px; margin: 5px; display: inline-block;">Quality ingredients</span>
+            </p>
+        </div>
+
+        <div class="review-grid">
+            <div class="review-card">
+                <div class="reviewer">
+                    <div class="reviewer-info">
+                        <h4>Yara Gebara</h4>
+                        <p>Local Guide · 60 reviews</p>
+                        <div class="stars" style="font-size: 1rem; letter-spacing: 2px;">★★★★★</div>
+                    </div>
+                </div>
+                <p class="review-text">"The place is underrated!! Flames is one of the best pizza places in Lebanon. The food is freshly prepared and they use high quality ingredients..."</p>
+            </div>
+
+            <div class="review-card">
+                <div class="reviewer">
+                    <div class="reviewer-info">
+                        <h4>Pr. Cynthia Eid</h4>
+                        <p>Local Guide · 13 reviews</p>
+                        <div class="stars" style="font-size: 1rem; letter-spacing: 2px;">★★★★★</div>
+                    </div>
+                </div>
+                <p class="review-text">"If you are living in the area and craving for a great pizza, this is the place! ...because it is wood oven crust the taste is super authentic."</p>
+            </div>
+
+            <div class="review-card">
+                <div class="reviewer">
+                    <div class="reviewer-info">
+                        <h4>Rayan Barakat</h4>
+                        <p>Local Guide · 21 reviews</p>
+                        <div class="stars" style="font-size: 1rem; letter-spacing: 2px;">★★★★★</div>
+                    </div>
+                </div>
+                <p class="review-text">"Flames Pizzeria is hands down one of the best pizzerias I've ever tried! The chef is incredibly professional. The crust is perfection—crispy on the outside, soft on the inside."</p>
+            </div>
+
+            <div class="review-card">
+                <div class="reviewer">
+                    <div class="reviewer-info">
+                        <h4>Piotr N</h4>
+                        <p>Local Guide · 26 reviews</p>
+                        <div class="stars" style="font-size: 1rem; letter-spacing: 2px;">★★★★★</div>
+                    </div>
+                </div>
+                <p class="review-text">"One of the best pizzas I’ve had, highly recommend. The crust is so good, the cheese, the sauce, everything. And they’re baked in a wood oven."</p>
+            </div>
+            
+            <div class="review-card">
+                <div class="reviewer">
+                    <div class="reviewer-info">
+                        <h4>Ramy Chaker</h4>
+                        <p>Local Guide · 74 reviews</p>
+                        <div class="stars" style="font-size: 1rem; letter-spacing: 2px;">★★★★★</div>
+                    </div>
+                </div>
+                <p class="review-text">"Hidden gem in fanar. Amazing pizza. Dough is amazing and topping are very high quality."</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <h2 class="footer-call">Hungry? Order Now!</h2>
+        <a href="tel:81284114" class="phone" style="text-decoration: none;">81 284 114</a>
+        <p>📍 Fanar, Lebanon</p>
+        <p style="margin-top: 20px; color: var(--gray); font-size: 0.9rem;">© 2026 Flames Pizzeria. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
